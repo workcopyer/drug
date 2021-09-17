@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cpwk.drug.mapper.DrugMapper">
+<sql id="table">drug_info</sql>
+<sql id="stock">stock_info</sql>
+    <select id="getAll" resultType="com.cpwk.drug.entity.drug">
+        SELECT * FROM <include refid="table"></include>
+    </select>
+    <select id="getDrugById" resultType="com.cpwk.drug.entity.drug">
+        SELECT * FROM <include refid="table"></include>
+        WHERE yd_id=#{id}
+    </select>
+    <delete id="delete" parameterType="com.cpwk.drug.entity.drug">
+        DELETE FROM <include refid="table"></include>
+        WHERE
+        yp_id=#{id}
+    </delete>
+    <update id="updatePrice" parameterType="com.cpwk.drug.entity.drug">
+        UPDATE <include refid="table"></include>
+        SET yp_price=#{price}
+        WHERE yp_id=#{id}
+    </update>
+    <update id="updateAmount" parameterType="com.cpwk.drug.entity.drug">
+        UPDATE <include refid="stock"></include>
+        SET kc_amount=#{amount}
+        WHERE yp_id=#{id}
+    </update>
+    <insert id="insert" parameterType="com.cpwk.drug.entity.drug">
+
+    </insert>
+
+</mapper>
